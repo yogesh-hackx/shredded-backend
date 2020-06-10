@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         data,
         excerpt,
     }).save();
-    res.status(201).send('Created!!!');
+    res.status(201).send('Created!!');
     console.log(headerImgUrl, title, data, excerpt);
 });
 
