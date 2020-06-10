@@ -29,4 +29,16 @@ router.get('/withoutFullData', async (req, res) => {
     }
 });
 
+router.get('/bySlug/:slug', async (req, res) => {
+    try {
+        const blog = await Blog.findOne({ slug: req.params.slug }).select(
+            '+data',
+        );
+        res.status(200).json(blog);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('server error');
+    }
+});
+
 module.exports = router;
