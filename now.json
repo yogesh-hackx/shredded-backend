@@ -12,7 +12,8 @@
             "dest": "/src/server.js",
             "methods": [
                 "GET",
-                "POST"
+                "POST",
+                "OPTIONS"
             ],
             "headers": {
                 "Access-Control-Allow-Origin": "*"
