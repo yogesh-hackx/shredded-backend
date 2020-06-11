@@ -1,13 +1,16 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
 const router = express.Router();
-const Blog = require('../models/Blog');
 const slugify = require('slugify');
+const Blog = require('../models/Blog');
 
 router.post('/', async (req, res) => {
-    const { headerImgUrl, title, data, excerpt } = req.body;
-    let slug = slugify(title, { lower: true, strict: true });
+    const {
+        headerImgUrl, title, data, excerpt,
+    } = req.body;
+    const slug = slugify(title, { lower: true, strict: true });
     const newBlog = await new Blog({
         headerImgUrl,
         title,

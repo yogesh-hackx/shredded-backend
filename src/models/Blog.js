@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { String } = mongoose.Schema.Types;
 
 const REQUIRED_STRING = { type: String, required: true };
