@@ -9,6 +9,7 @@ const signupRoute = require('./routes/signup');
 const uploadRoute = require('./routes/upload');
 const blogRoute = require('./routes/blog');
 const planRoute = require('./routes/plan');
+const paymentRoute = require('./routes/payment');
 const middlewares = require('./middlewares');
 const { cloudinaryConfig } = require('./config/cloudinaryConfig');
 
@@ -42,7 +43,8 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/plan',planRoute);
+app.use('/plan', planRoute);
+app.use('/payment', paymentRoute);
 app.use('/login', loginRoute);
 app.use('/signup', signupRoute);
 app.use(
