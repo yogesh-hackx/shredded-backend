@@ -15,22 +15,30 @@ router.post('/', async (req, res) => {
         return res.status(404).json({ message: 'Auth failed!!' });
     }
 
-    await bcrypt.compare(password, user.password)
-        .then((exists) => {
-            if (exists) {
-                const token = jwt.sign(
-                    {
-                        id: user._id,
-                    },
-                    process.env.JWT_SECRET,
-                    {
-                        expiresIn: '7d',
-                    },
-                );
-                return res.json(token);
-            }
+    await bcrypt.compare(password, user.password).then((exists) => {
+        if (exists) {
+            const token = jwt.sign(
+                {
+                    id: user._id,
+                    role: user.role,
+                },
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '7d',
+                },
+            );
+            return res.json({
+                token,
+                user: {
+                    name: user.name,
+                    email: user.email,
+                    role: user.role,
+                    id: user._id,
+                },
+            });
+        }
 
-            return res.status(404).json({ message: 'Auth failed!!' });
-        });
+        return res.status(404).json({ message: 'Auth failed!!' });
+    });
 });
 module.exports = router;
