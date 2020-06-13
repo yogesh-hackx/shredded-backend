@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -34,7 +35,7 @@ app.use(
         // origin: process.env.CORS_ORIGIN,
     }),
 );
-app.use(express.json());
+app.use(bodyParser.json());
 app.use('*', cloudinaryConfig);
 
 app.get('/', (req, res) => {
